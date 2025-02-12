@@ -1,16 +1,17 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Mission6.Models;
+//using Mission6.Models;
 
 namespace Mission6.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private MovieContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(MovieContext temp)
         {
-            _logger = logger;
+            _context = temp;
         }
 
         public IActionResult Index()
@@ -18,15 +19,23 @@ namespace Mission6.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult GetToKnowJoel()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult AddMovie()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie(Movie response)
+        {
+            _context.Movies.Add(response);
+            _context.SaveChanges();
+            return View("Index");
         }
     }
 }
