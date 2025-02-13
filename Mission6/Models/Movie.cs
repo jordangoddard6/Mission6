@@ -2,7 +2,8 @@
 
 namespace Mission6.Models
 {
-    public class Movie
+    public class Movie /* Movie ID as PK. Category, Title, Year, Director, and Rating all required fields
+                          Edited, LentTo, and Notes are all optional fields */
     {
         [Key]
         [Required]
