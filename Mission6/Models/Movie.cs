@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mission6.Models
+namespace Mission06_Goddard.Models
 {
     public class Movie /* Movie ID as PK. Category, Title, Year, Director, and Rating all required fields
                           Edited, LentTo, and Notes are all optional fields */

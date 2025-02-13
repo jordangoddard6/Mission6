@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Mission6.Models
+namespace Mission06_Goddard.Models
 {
     public class MovieContext : DbContext
     {

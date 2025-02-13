@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mission6.Models;
+using Mission06_Goddard.Models;
 
 #nullable disable
 
-namespace Mission6.Migrations
+namespace Mission06_Goddard.Migrations
 {
     [DbContext(typeof(MovieContext))]
     [Migration("20250212223346_Initial")]

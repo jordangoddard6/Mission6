@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Mission6.Migrations
+namespace Mission06_Goddard.Migrations
 {
     /// <inheritdoc />
     public partial class TakeTwo : Migration

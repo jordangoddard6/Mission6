@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Mission6.Models;
+using Mission06_Goddard.Models;
 
-namespace Mission6.Controllers
+namespace Mission06_Goddard.Controllers
 {
     public class HomeController : Controller
     {
