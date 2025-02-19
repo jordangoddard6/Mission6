@@ -45,6 +45,7 @@ namespace Mission06_Goddard.Controllers
             return View(movies);
         }
 
+        [HttpGet]
         public IActionResult EditMovie(int id)
         {
             Movie movie = _context.Movies.Single(x => x.MovieId == id);
@@ -52,6 +53,15 @@ namespace Mission06_Goddard.Controllers
             ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
             
             return View("AddMovie", movie);
+        }
+
+        [HttpPost]
+        public IActionResult EditMovie(Movie updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieCollection");
         }
     }
 }

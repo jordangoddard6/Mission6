@@ -3,6 +3,8 @@
 	<h1 class="display-4">Add Movie</h1>
 	<form method="post"><br />
 
+		<input type="hidden" asp-for="MovieId" />
+
 		<label asp-for="CategoryId">Category:</label>
 		<select asp-for="CategoryId">
 			<option value="" selected disabled hidden></option>
@@ -18,7 +20,7 @@
 		<br /><br />
 
 		<label asp-for="Year">Year:</label>
-		<input asp-for="Year" required type="number" min="1900" max="2026" required/>
+		<input asp-for="Year" type="number" min="1900" max="2026" required/>
 		<br /><br />
 
 		<label asp-for="Director">Director:</label>
@@ -59,6 +61,6 @@
 		<label asp-for="Notes">Notes:</label>
 		<input asp-for="Notes" maxlength="15" />
 		<br /><br />
-		<button type="submit" asp-controller="Home" asp-action="AddMovie">Submit</button>
+		<button type="submit">Submit</button>
 	</form>
 </div>
