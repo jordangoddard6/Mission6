@@ -8,5 +8,7 @@ namespace Mission06_Goddard.Models
         { 
         }
         public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }

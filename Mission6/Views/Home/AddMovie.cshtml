@@ -3,17 +3,13 @@
 	<h1 class="display-4">Add Movie</h1>
 	<form method="post"><br />
 
-		<label asp-for="Category">Category:</label> 
-		<select asp-for="Category" required>
+		<label asp-for="CategoryId">Category:</label>
+		<select asp-for="CategoryId">
 			<option value="" selected disabled hidden></option>
-			<option value="Action/Adventure">Action/Adventure</option>
-			<option value="Comedy">Comedy</option>
-			<option value="Drama">Drama</option>
-			<option value="Family">Family</option>
-			<option value="Horror/Suspence">Horror/Suspence</option>
-			<option value="Miscellaneous">Miscellaneous</option>
-			<option value="Television">Television</option>
-			<option value="VHS">VHS</option>
+			@foreach (var x in ViewBag.Categories)
+			{
+				<option value="@x.CategoryId">@x.CategoryName</option>
+			}
 		</select>
 		<br /><br />
 
@@ -22,15 +18,15 @@
 		<br /><br />
 
 		<label asp-for="Year">Year:</label>
-		<input asp-for="Year" type="number" min="1900" max="2026" required/>
+		<input asp-for="Year" required type="number" min="1900" max="2026" required/>
 		<br /><br />
 
 		<label asp-for="Director">Director:</label>
-		<input asp-for="Director" required/>
+		<input asp-for="Director"/>
 		<br /><br />
 
 		<label asp-for="Rating">Rating:</label>
-		<select asp-for="Rating" required>
+		<select asp-for="Rating">
 			<option value="" selected disabled hidden></option>
 			<option value="G">G</option>
 			<option value="PG">PG</option>
@@ -41,15 +37,23 @@
 		<br /><br />
 
 		<label asp-for="Edited">Edited?</label>
-		<select asp-for="Edited">
+		<select asp-for="Edited" required>
 			<option value="" selected disabled hidden></option>
-			<option value="true">Yes</option>
-			<option value="false">No</option>
+			<option value="1">Yes</option>
+			<option value="0">No</option>
 		</select>
 		<br /><br />
 
 		<label asp-for="LentTo">Lent to:</label>
 		<input asp-for="LentTo" />
+		<br /><br />
+
+		<label asp-for="CopiedToPlex">Copied to Plex?</label>
+		<select asp-for="CopiedToPlex" required>
+			<option value="" selected disabled hidden></option>
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</select>
 		<br /><br />
 
 		<label asp-for="Notes">Notes:</label>

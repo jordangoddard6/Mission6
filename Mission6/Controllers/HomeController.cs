@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Mission06_Goddard.Models;
 
 namespace Mission06_Goddard.Controllers
@@ -35,6 +36,22 @@ namespace Mission06_Goddard.Controllers
             _context.Movies.Add(response);
             _context.SaveChanges();
             return View("Index");
+        }
+
+        public IActionResult MovieCollection()
+        {
+            List<Movie> movies = _context.Movies.Include(x => x.Category).ToList();
+
+            return View(movies);
+        }
+
+        public IActionResult EditMovie(int id)
+        {
+            Movie movie = _context.Movies.Single(x => x.MovieId == id);
+
+            ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
+            
+            return View("AddMovie", movie);
         }
     }
 }
