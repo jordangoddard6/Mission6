@@ -33,15 +33,16 @@ namespace Mission06_Goddard.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMovie(Movie newMovie) // Submits create new movie in sqlite database and returns to movie collection
+        public IActionResult AddMovie(Movie newMovie) /* If input valid, creates new movie in database and returns to "MovieCollection" view.
+                                                       * Otherwise, returns same "MovieForm" view with errors */
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // Valid input: adds to database
             {
                 _context.Movies.Add(newMovie);
                 _context.SaveChanges();
                 return RedirectToAction("MovieCollection");
             }
-            else
+            else // Invalid input: Reload form with errors
             {
                 ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
                 return View("MovieForm", newMovie);
@@ -49,7 +50,7 @@ namespace Mission06_Goddard.Controllers
 
         }
 
-        public IActionResult MovieCollection() // Returns MovieCollection view with list of all movies
+        public IActionResult MovieCollection() // Returns "MovieCollection" view with list of all movies
         {
             List<Movie> allMovies = _context.Movies.OrderBy(x => x.Title).Include(x => x.Category).ToList();
 
@@ -67,7 +68,8 @@ namespace Mission06_Goddard.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditMovie(Movie editedMovie) // Posts updated information about movie to database and returns to movie collection view
+        public IActionResult EditMovie(Movie editedMovie) /* If input valid, posts updated info about movie to database and returns to "MovieCollection" view.
+                                                           * Otherwise, returns same "MovieForm" view with errors */
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +88,7 @@ namespace Mission06_Goddard.Controllers
         }
 
         [HttpGet]
-        public IActionResult DeleteMovie(int id) // Returns DeleteMovie view with info about movie to be deleted
+        public IActionResult DeleteMovie(int id) // Returns "DeleteMovie" view with info about movie to be deleted
         {
             Movie movieToDelete = _context.Movies.Single(x => x.MovieId == id);
 
@@ -94,7 +96,7 @@ namespace Mission06_Goddard.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostDeleteMovie(int id) // Removes movie from database and returns to movie collection view
+        public IActionResult PostDeleteMovie(int id) // Removes movie from database and returns to "MovieCollection" view
         {
             Movie movieToDelete = _context.Movies.Single(x => x.MovieId == id);
             _context.Movies.Remove(movieToDelete);
