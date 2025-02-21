@@ -1,67 +1,83 @@
 ﻿@model Movie
-<div class="text-center">
-	<h1 class="display-4">Add Movie</h1>
-	<form method="post"><br />
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Add Movie</h1>
+    </div>
+    <form method="post" class="row g-3">
+        <input type="hidden" asp-for="MovieId" />
 
-		<input type="hidden" asp-for="MovieId" />
+        <div class="col-md-6">
+            <label asp-for="CategoryId" class="form-label">Category:</label>
+            <select asp-for="CategoryId" class="form-select">
+                <option value="" selected disabled hidden></option>
+                @foreach (var x in ViewBag.Categories)
+                {
+                    <option value="@x.CategoryId">@x.CategoryName</option>
+                }
+            </select>
+        </div>
 
-		<label asp-for="CategoryId">Category:</label>
-		<select asp-for="CategoryId">
-			<option value="" selected disabled hidden></option>
-			@foreach (var x in ViewBag.Categories)
-			{
-				<option value="@x.CategoryId">@x.CategoryName</option>
-			}
-		</select>
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="Title" class="form-label">Title:</label>
+            <input asp-for="Title" class="form-control" required />
+        </div>
 
-		<label asp-for="Title">Title:</label>
-		<input asp-for="Title" required/>
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="Year" class="form-label">Year:</label>
+            <input asp-for="Year" type="number" min="1888" max="2026" class="form-control" required />
+        </div>
 
-		<label asp-for="Year">Year:</label>
-		<input asp-for="Year" type="number" min="1888" max="2026" required/>
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="Director" class="form-label">Director:</label>
+            <input asp-for="Director" class="form-control" />
+        </div>
 
-		<label asp-for="Director">Director:</label>
-		<input asp-for="Director"/>
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="Rating" class="form-label">Rating:</label>
+            <select asp-for="Rating" class="form-select">
+                <option value="" selected disabled hidden></option>
+                <option value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG-13">PG-13</option>
+                <option value="R">R</option>
+                <option value="NR">NR</option>
+            </select>
+        </div>
 
-		<label asp-for="Rating">Rating:</label>
-		<select asp-for="Rating">
-			<option value="" selected disabled hidden></option>
-			<option value="G">G</option>
-			<option value="PG">PG</option>
-			<option value="PG-13">PG-13</option>
-			<option value="R">R</option>
-			<option value="NR">NR</option>
-		</select>
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="Edited" class="form-label">Edited?</label>
+            <select asp-for="Edited" class="form-select" required>
+                <option value="" selected disabled hidden></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
 
-		<label asp-for="Edited">Edited?</label>
-		<select asp-for="Edited" required>
-			<option value="" selected disabled hidden></option>
-			<option value="1">Yes</option>
-			<option value="0">No</option>
-		</select>
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="LentTo" class="form-label">Lent to:</label>
+            <input asp-for="LentTo" class="form-control" />
+        </div>
 
-		<label asp-for="LentTo">Lent to:</label>
-		<input asp-for="LentTo" />
-		<br /><br />
+        <div class="col-md-6">
+            <label asp-for="CopiedToPlex" class="form-label">Copied to Plex?</label>
+            <select asp-for="CopiedToPlex" class="form-select" required>
+                <option value="" selected disabled hidden></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
 
-		<label asp-for="CopiedToPlex">Copied to Plex?</label>
-		<select asp-for="CopiedToPlex" required>
-			<option value="" selected disabled hidden></option>
-			<option value="1">Yes</option>
-			<option value="0">No</option>
-		</select>
-		<br /><br />
+        <div class="col-md-12">
+            <label asp-for="Notes" class="form-label">Notes:</label>
+            <input asp-for="Notes" class="form-control" maxlength="15" />
+        </div>
 
-		<label asp-for="Notes">Notes:</label>
-		<input asp-for="Notes" maxlength="15" />
-		<br /><br />
-		<button type="submit">Submit</button>
-		<div asp-validation-summary="All"></div>
-	</form>
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="col-md-12">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </form>
 </div>

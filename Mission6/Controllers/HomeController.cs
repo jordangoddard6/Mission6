@@ -55,7 +55,7 @@ namespace Mission06_Goddard.Controllers
 
             ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
             
-            return View("AddMovie", movieToEdit);
+            return View("MovieForm", movieToEdit);
         }
 
         [HttpPost]

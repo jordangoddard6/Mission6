@@ -1,32 +1,42 @@
 ﻿@model List<Movie>
 
-<table class="table table-bordered">
-    <tr>
-        <th>Category</th>
-        <th>Title</th>
-        <th>Year</th>
-        <th>Director</th>
-        <th>Rating</th>
-        <th>Edited?</th>
-        <th>Lent To</th>
-        <th>Copied to Plex?</th>
-        <th>Notes</th>
-    </tr>
-    @foreach (var x in Model)
-    {
-        <tr>
-            <td>@x.Category.CategoryName</td>
-            <td>@x.Title</td>
-            <td>@x.Year</td>
-            <td>@x.Director</td>
-            <td>@x.Rating</td>
-            <td>@x.Edited</td>
-            <td>@x.LentTo</td>
-            <td>@x.CopiedToPlex</td>
-            <td>@x.Notes</td>
-            <td><a class="btn btn-info" asp-controller="Home" asp-action="EditMovie" asp-route-id="@x.MovieId">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteMovie" asp-route-id="@x.MovieId">Delete</a></td>
-        </tr>
-    }
-
-</table>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Director</th>
+                    <th>Rating</th>
+                    <th>Edited?</th>
+                    <th>Lent To</th>
+                    <th>Copied to Plex?</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                    <tr class="align-middle">
+                        <td>@x.Category?.CategoryName</td>
+                        <td>@x.Title</td>
+                        <td>@x.Year</td>
+                        <td>@x.Director</td>
+                        <td>@x.Rating</td>
+                        <td>@x.Edited</td>
+                        <td>@x.LentTo</td>
+                        <td>@x.CopiedToPlex</td>
+                        <td>@x.Notes</td>
+                        <td class="d-flex flex-column align-items-center">
+                            <a class="btn btn-info btn-sm mb-2 w-100" asp-controller="Home" asp-action="EditMovie" asp-route-id="@x.MovieId">Edit</a>
+                            <a class="btn btn-danger btn-sm w-100" asp-controller="Home" asp-action="DeleteMovie" asp-route-id="@x.MovieId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
