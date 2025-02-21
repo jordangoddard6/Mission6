@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission06_Goddard.Models
 {
-    public class Category
+    public class Category // CategoryId is PK, both CategoryId and CategoryName are required fields
+                           
     {
 
         [Key]

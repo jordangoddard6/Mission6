@@ -25,40 +25,61 @@ namespace Mission06_Goddard.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddMovie() // Returns Add Movie view
+        public IActionResult AddMovie() // Returns blank "MovieForm" view
         {
-            return View();
+            ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
+
+            return View("MovieForm");
         }
 
         [HttpPost]
-        public IActionResult AddMovie(Movie response) // Submits form data to sqlite database and returns to home page
+        public IActionResult AddMovie(Movie newMovie) // Submits create new movie in sqlite database and returns to movie collection
         {
-            _context.Movies.Add(response);
-            _context.SaveChanges();
-            return View("Index");
+                _context.Movies.Add(newMovie);
+                _context.SaveChanges();
+                return RedirectToAction("MovieCollection");
+
         }
 
-        public IActionResult MovieCollection()
+        public IActionResult MovieCollection() // Returns MovieCollection view with list of all movies
         {
-            List<Movie> movies = _context.Movies.Include(x => x.Category).ToList();
+            List<Movie> allMovies = _context.Movies.OrderBy(x => x.Title).Include(x => x.Category).ToList();
 
-            return View(movies);
+            return View(allMovies);
         }
 
         [HttpGet]
-        public IActionResult EditMovie(int id)
+        public IActionResult EditMovie(int id) // Returns "MovieForm" view with fields filled with info about movie to be edited
         {
-            Movie movie = _context.Movies.Single(x => x.MovieId == id);
+            Movie movieToEdit = _context.Movies.Single(x => x.MovieId == id);
 
             ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
             
-            return View("AddMovie", movie);
+            return View("AddMovie", movieToEdit);
         }
 
         [HttpPost]
-        public IActionResult EditMovie(Movie updatedInfo)
+        public IActionResult EditMovie(Movie editedMovie) // Posts updated information about movie to database and returns to movie collection view
         {
-            _context.Update(updatedInfo);
+                _context.Update(editedMovie);
+                _context.SaveChanges();
+
+                return RedirectToAction("MovieCollection");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteMovie(int id) // Returns DeleteMovie view with info about movie to be deleted
+        {
+            Movie movieToDelete = _context.Movies.Single(x => x.MovieId == id);
+
+            return View(movieToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult PostDeleteMovie(int id) // Removes movie from database and returns to movie collection view
+        {
+            Movie movieToDelete = _context.Movies.Single(x => x.MovieId == id);
+            _context.Movies.Remove(movieToDelete);
             _context.SaveChanges();
 
             return RedirectToAction("MovieCollection");

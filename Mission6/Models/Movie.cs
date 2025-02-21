@@ -3,8 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission06_Goddard.Models
 {
-    public class Movie /* Movie ID as PK. Category, Title, Year, Director, and Rating all required fields
-                          Edited, LentTo, and Notes are all optional fields */
+    public class Movie /* MovieId as PK. Title, Year, Edited and CopiedToPlex are all required fields.
+                        * Year must be between 1888 and 2026. 
+                        * CategoryId is a FK that links to Category model/table.
+                          CategoryId, Director, Rating, LentTo, and Notes are all optional fields */
     {
         [Key]
         [Required]
@@ -15,6 +17,7 @@ namespace Mission06_Goddard.Models
         [Required]
         public string Title { get; set; }
         [Required]
+        [Range(1888,2026)]
         public int Year { get; set; }
         public string? Director { get; set; }
         public string? Rating { get; set; }

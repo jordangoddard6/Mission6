@@ -1,0 +1,9 @@
+﻿@model Movie
+
+<h2>Confirm Deletion</h2>
+<h3>@Model.Title, @Model.Year</h3>
+
+<form method="post">
+	<button type="submit" asp-controller="Home" asp-action="PostDeleteMovie" asp-route-id="@Model.MovieId">Delete</button>
+	<a class="btn btn-info" asp-controller="Home" asp-action="MovieCollection">Cancel</a>
+</form>

@@ -20,7 +20,7 @@
 		<br /><br />
 
 		<label asp-for="Year">Year:</label>
-		<input asp-for="Year" type="number" min="1900" max="2026" required/>
+		<input asp-for="Year" type="number" min="1888" max="2026" required/>
 		<br /><br />
 
 		<label asp-for="Director">Director:</label>
@@ -62,5 +62,6 @@
 		<input asp-for="Notes" maxlength="15" />
 		<br /><br />
 		<button type="submit">Submit</button>
+		<div asp-validation-summary="All"></div>
 	</form>
 </div>
