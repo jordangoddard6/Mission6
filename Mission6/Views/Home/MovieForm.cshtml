@@ -3,7 +3,7 @@
     <div class="text-center">
         <h1 class="display-4">Add Movie</h1>
     </div>
-    <form method="post" class="row g-3">
+    <form method="post" class="row g-3" novalidate>
         <input type="hidden" asp-for="MovieId" />
 
         <div class="col-md-6">
@@ -47,7 +47,7 @@
         <div class="col-md-6">
             <label asp-for="Edited" class="form-label">Edited?</label>
             <select asp-for="Edited" class="form-select" required>
-                <option value="" selected disabled hidden></option>
+                <option value="" selected></option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
@@ -61,7 +61,7 @@
         <div class="col-md-6">
             <label asp-for="CopiedToPlex" class="form-label">Copied to Plex?</label>
             <select asp-for="CopiedToPlex" class="form-select" required>
-                <option value="" selected disabled hidden></option>
+                <option value="" selected></option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>

@@ -29,15 +29,23 @@ namespace Mission06_Goddard.Controllers
         {
             ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
 
-            return View("MovieForm");
+            return View("MovieForm", new Movie());
         }
 
         [HttpPost]
         public IActionResult AddMovie(Movie newMovie) // Submits create new movie in sqlite database and returns to movie collection
         {
+            if (ModelState.IsValid)
+            {
                 _context.Movies.Add(newMovie);
                 _context.SaveChanges();
                 return RedirectToAction("MovieCollection");
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
+                return View("MovieForm", newMovie);
+            }
 
         }
 
@@ -61,10 +69,20 @@ namespace Mission06_Goddard.Controllers
         [HttpPost]
         public IActionResult EditMovie(Movie editedMovie) // Posts updated information about movie to database and returns to movie collection view
         {
+            if (ModelState.IsValid)
+            {
                 _context.Update(editedMovie);
                 _context.SaveChanges();
 
                 return RedirectToAction("MovieCollection");
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories.OrderBy(x => x.CategoryName).ToList();
+
+                return View("MovieForm", editedMovie);
+            }
+
         }
 
         [HttpGet]

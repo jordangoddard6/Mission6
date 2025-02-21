@@ -14,18 +14,18 @@ namespace Mission06_Goddard.Models
         [ForeignKey("CategoryId")]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-        [Required]
-        public string Title { get; set; }
-        [Required]
-        [Range(1888,2026)]
-        public int Year { get; set; }
+        [Required(ErrorMessage = "Title Required")]
+        public string? Title { get; set; }
+        [Required(ErrorMessage = "Year Required")]
+        [Range(1888,2026, ErrorMessage = "Year must be between 1888 and 2026")]
+        public int? Year { get; set; }
         public string? Director { get; set; }
         public string? Rating { get; set; }
-        [Required]
-        public int Edited { get; set; }
+        [Required(ErrorMessage = "Edited? Required")]
+        public int? Edited { get; set; }
         public string? LentTo { get; set; }
-        [Required]
-        public int CopiedToPlex { get; set; }
+        [Required(ErrorMessage = "Copied To Plex? Requried")]
+        public int? CopiedToPlex { get; set; }
         public string? Notes { get; set; }
 
     }
